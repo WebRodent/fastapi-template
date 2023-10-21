@@ -1,0 +1,31 @@
+version: "3"
+
+volumes:
+  db-data:
+    driver: local
+
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - devcontainer.env
+    volumes:
+      - ..:/workspaces/chip-api:cached
+    # command to do nothing
+    command: ["bash", "-c", "while sleep 1000; do :; done"]
+    # network_mode: service:db makes the db container available at the host name "db"
+    network_mode: service:db
+
+  db:
+    image: postgres:15.4
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)

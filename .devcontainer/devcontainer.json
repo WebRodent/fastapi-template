@@ -1,0 +1,50 @@
+{
+	"name": "Chip playground Dev Container",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"features": {
+        "ghcr.io/itsmechlark/features/postgresql": {
+			"version": "15"
+		},
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {
+			"version": "latest",
+			"moby": false
+		},
+		// installing python 3.11
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.11"
+		},
+		// poetry
+		"ghcr.io/devcontainers-contrib/features/poetry:1": {
+			"version": "latest"
+		}
+	},
+	"workspaceFolder": "/workspaces/chip-kiss",
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// add copilot, postgres driver for SQLTools, jupyter and python extension
+			"extensions": [
+				// copilot
+				"github.copilot",
+				// copilot chat
+				"github.copilot-chat",
+				// python extensions
+				"ms-python.python",
+				"ms-python.flake8",
+                // postgres driver for SQLTools
+                "ckolkman.vscode-postgres"
+			]
+		}
+	},
+	// "remoteUser": "vscode",
+	// mounting docker socket, so we can use docker cli from inside the container
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	],
+
+	"initializeCommand": [
+		".devcontainer/scripts/initialize"
+	]
+}

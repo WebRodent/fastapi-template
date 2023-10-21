@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+# if .devcontainer/devcontainer.env does not exist, create it
+if [ ! -f ".devcontainer/devcontainer.env" ]; then
+    echo "devcontainer.env not found, creating one..."
+    cp .devcontainer/devcontainer.env.example .devcontainer/devcontainer.env
+fi
