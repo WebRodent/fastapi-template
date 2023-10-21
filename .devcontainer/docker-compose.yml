@@ -12,7 +12,7 @@ services:
     env_file:
       - devcontainer.env
     volumes:
-      - ..:/workspaces/chip-api:cached
+      - ..:/workspaces/fastapi-template:cached
     # command to do nothing
     command: ["bash", "-c", "while sleep 1000; do :; done"]
     # network_mode: service:db makes the db container available at the host name "db"

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "fastapi-template"
+version = "0.1.0"
+description = "Template package for fastapi-template project"
+authors = ["brakistad <brakistad@gmail.com>"]
+license = "BSD 2-Clause License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.104.0"
+alembic = "^1.12.0"
+SQLAlchemy = "^2.0.22"
+pydantic = "^2.4.2"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+psycopg2 = "^2.9.9"
+pydantic-settings = "^2.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

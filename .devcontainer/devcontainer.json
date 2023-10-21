@@ -1,5 +1,5 @@
 {
-	"name": "Chip playground Dev Container",
+	"name": "FastAPI Template Dev Container",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "devcontainer",
 	"features": {
@@ -19,7 +19,7 @@
 			"version": "latest"
 		}
 	},
-	"workspaceFolder": "/workspaces/chip-kiss",
+	"workspaceFolder": "/workspaces/fastapi-template",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -33,9 +33,22 @@
 				// python extensions
 				"ms-python.python",
 				"ms-python.flake8",
+				"ms-python.black-formatter",
+				"ms-python.isort",
                 // postgres driver for SQLTools
                 "ckolkman.vscode-postgres"
-			]
+			],
+			"settings": {
+				"editor.defaultFormatter": "ms-python.black-formatter",
+				"editor.formatOnSave": true,
+				"flake8.args": [
+					"--max-line-length=88"
+				],
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				},
+			  	"isort.args":["--profile", "black"]
+			}
 		}
 	},
 	// "remoteUser": "vscode",

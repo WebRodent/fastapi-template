@@ -1,4 +1,5 @@
 from starlette.testclient import TestClient
+
 from app.api import app
 
 
@@ -8,9 +9,3 @@ def test_docs_redirect():
     assert response.history[0].status_code == 302
     assert response.status_code == 200
     assert response.url == "http://testserver/docs"
-
-
-def test_api():
-    client = TestClient(app)
-
-    # TODO: Add tests here
