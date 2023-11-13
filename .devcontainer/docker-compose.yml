@@ -1,7 +1,7 @@
 version: "3"
 
 volumes:
-  db-data:
+  dbdata:
     driver: local
 
 services:
@@ -22,7 +22,8 @@ services:
     image: postgres:15.4
     restart: unless-stopped
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data
+      - ../scripts/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres

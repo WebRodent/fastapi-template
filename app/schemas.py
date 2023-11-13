@@ -25,3 +25,8 @@ class UserUpdate(BaseModel):
 class UserLogin(BaseModel):
     email: str
     auth_method: str
+
+
+class Task(BaseModel):
+    id: int
+    name: str

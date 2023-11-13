@@ -1,8 +1,7 @@
 import logging
 from enum import Enum
 
-from pydantic import Field
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class LogLevels(str, Enum):
@@ -31,10 +30,7 @@ class AppConfig(BaseSettings):
     LOG_SQL: bool = True
     LOG_SQL_LEVEL: LogLevels = LogLevels.INFO
 
-    class Config:
-        env_prefix = (
-            "APP_"  # Prefix for all environment variables, e.g., APP_DATABASE_URL
-        )
+    model_config = SettingsConfigDict(env_prefix="APP_")
 
 
 def get_config():
