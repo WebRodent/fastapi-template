@@ -4,7 +4,7 @@ from typing import List
 
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
@@ -74,15 +74,9 @@ app.add_middleware(
 app.mount("/main", StaticFiles(directory="public"), name="main")
 
 
-@app.get(
-    "/",
-    name="docs",
-    description="Redirects to the docs",
-    response_class=RedirectResponse,
-    tags=["docs"],
-)
-def docs_redirect():
-    return RedirectResponse("/docs")
+@app.get("/", name="main", description="Serves the main page", tags=["main"])
+def main_page():
+    return FileResponse("public/index.html")
 
 
 @app.post(
