@@ -52,7 +52,8 @@ class Worker:
                     sleep(micro_sleep)
                     acc_sleep += micro_sleep
                     micro_sleep = 0.1 * random.random()
-                sleep_interval = min(sleep_interval + 1, 10)
+                if sleep_interval < 10:
+                    sleep_interval += 1
 
     def add_task(self, task: Task):
         # Add a task to the queue
